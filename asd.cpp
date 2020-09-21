@@ -1,29 +1,35 @@
 #include <iostream>
-#include <string>
+#include <time.h>
 using namespace std;
+int Guess(int);
 int main()
 {
-	string name ;
-	float salary ;
-	float sale ;
-	float persent ;
-	float total;
+	int ran, Round;
+	srand(time(NULL));
+	ran = rand() % 9 + 1;
+	cout << "###Welcome to guessing number game###" << endl;
+	cout << "Secret number has been chosen" << endl;
+	Round = Guess(ran);
+	cout << "The secret number is " << ran << "" << endl;
+	cout << "You made " << Round << " guesses" << endl;
+}
 
-	cout<<"Enter Name : ";
-	cin>>name;
-	cout<<"Enter Salary : ";
-	cin>>salary;
-	cout<<"Enter Sale : ";
-	cin>>sale;
-	cout<<"Enter Commission Percent : ";
-	cin>>persent;
-
-
-	total =salary+sale*(persent/100);
-	cout<<"Your Name = "<<name<<endl;
-	cout<<"Total Revenue = "<<total<<endl;
-
-
-
-	return 0;
+int Guess(int ran)
+{
+	int num, Round;
+	for (Round = 1;; Round++) 
+	{
+		cout << "Guess the number (1 to 10) : ";
+		cin >> num;
+		if (num < ran)
+			cout << "The secret number is lower" << endl;
+		else if (num > ran)
+			cout << "The secret number is higher" << endl;
+		else
+		{
+			cout << "Congratulations!" << endl;
+			break;
+		}
+	}
+	return Round;
 }
